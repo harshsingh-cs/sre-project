@@ -2,7 +2,7 @@ groups:
 - name: WebServerAlerts
   rules:
   - alert: HighResponseTime
-    expr: rate(http_request_duration_seconds_sum[5m]) / rate(http_request_duration_seconds_count[5m]) > 0.5
+    expr: rate(flask_http_request_duration_seconds_sum[5m]) / rate(flask_http_request_duration_seconds_count[5m]) > 0.5
     for: 5m
     labels:
       severity: warning
@@ -11,7 +11,7 @@ groups:
       description: Average response time is above 500ms for 5 minutes
 
   - alert: HighErrorRate
-    expr: rate(http_requests_total{status_code=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+    expr: rate(flask_http_requests_total{status_code=~"5.."}[5m]) / rate(flask_http_requests_total[5m]) > 0.05
     for: 5m
     labels:
       severity: critical

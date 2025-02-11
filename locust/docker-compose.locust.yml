@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  locust:
+    image: locustio/locust
+    volumes:
+      - .:/mnt/locust  # Mount the current folder, NOT ./locust
+    working_dir: /mnt/locust
+    command: locust -f /mnt/locust/locustfile.py
+    ports:
+      - "8089:8089"
